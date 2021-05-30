@@ -1,0 +1,20 @@
+.header {
+    width: 100%;
+    padding: 90px 0;
+    margin-bottom: 80px;
+    background-color: #000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    color: #fff;
+    text-decoration: none;
+
+    img {
+        margin-right: 24px;
+    }
+}
