@@ -1,23 +1,18 @@
-import axios from "axios";
 import {Dispatch} from "redux";
 import {PhotoAction, PhotoActionTypes} from "../../types/photo";
+import {handleFetchPhoto} from "../../api/api";
 
 export const fetchPhotos = (page: number, per_page: number) => {
-    return async (dispatch: Dispatch<PhotoAction>) => {
+    return (dispatch: Dispatch<PhotoAction>) => {
         try {
             dispatch({type: PhotoActionTypes.FETCH_PHOTOS})
-            const response = await axios.get(
-                `${process.env.REACT_APP_API_URL}/photos?client_id=${process.env.REACT_APP_API_KEY}`,
-                {
-                    params: {
-                        per_page,
-                        page
-                    }
+            handleFetchPhoto(page, per_page)
+                .then(response => {
+                    dispatch({
+                        type: PhotoActionTypes.FETCH_PHOTOS_SUCCESS,
+                        payload: response.data
+                    })
                 })
-            dispatch({
-                type: PhotoActionTypes.FETCH_PHOTOS_SUCCESS,
-                payload: response.data
-            })
         } catch (e) {
             dispatch({
                 type: PhotoActionTypes.FETCH_PHOTOS_ERROR,
