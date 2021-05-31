@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {PhotoParamsType, PhotosType} from "../types/photo";
 import {useParams} from 'react-router-dom'
-import PhotoGrid from "../components/PhotoGrid/PhotoGrid";
+import {PhotoParamsType, PhotosType} from "../types/photo";
 import {fetchPhoto, fetchRelatedPhoto} from "../api/api";
+import PhotoGrid from "../components/PhotoGrid/PhotoGrid";
+import PhotoDetail from "../components/PhotoDetail/PhotoDetail";
+import Preloader from "../components/Preloader/Preloader";
 
 const Photo = () => {
     const [photo, setPhoto] = useState<PhotosType | null>(null)
@@ -17,21 +19,29 @@ const Photo = () => {
 
     if (!photo) {
         return (
-            <h1>
-                Loading...
-            </h1>
+            <Preloader />
         );
     }
 
     return (
-        <div>
-            <div>{photo.user.name}</div>
-            <img src={photo.user.profile_image.large} alt=""/>
-            {photo.tags?.map((t, i) => <div key={`${i}${t.title}`}>{t.title}</div>)}
-            <img src={photo.urls.regular} alt={photo.alt_description}/>
+        <>
+            <PhotoDetail
+                user={photo.user}
+                urls={photo.urls}
+                links={photo.links}
+                id={photo.id}
+                alt_description={photo.alt_description}
+            />
 
-            <PhotoGrid photos={relatedPhoto}/>
-        </div>
+            {relatedPhoto.length !== 0
+                ? <div className="container">
+                    <PhotoGrid photos={relatedPhoto}>
+                        <h3>Похожие фотографии</h3>
+                    </PhotoGrid>
+                </div>
+                : null
+            }
+        </>
     )
 
 };

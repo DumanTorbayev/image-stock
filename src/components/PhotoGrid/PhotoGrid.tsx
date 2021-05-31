@@ -3,7 +3,7 @@ import css from './PhotoGrid.module.scss'
 import {PhotoGridProps} from "../../types/photo";
 import {Link} from 'react-router-dom'
 
-const PhotoGrid: FC<PhotoGridProps> = ({photos}) => {
+const PhotoGrid: FC<PhotoGridProps> = ({photos,children}) => {
     const getColumns = () => {
         let columnsArr = [];
 
@@ -72,8 +72,11 @@ const PhotoGrid: FC<PhotoGridProps> = ({photos}) => {
     };
 
     return (
-        <div className={css['img-grid']}>
-            {getColumns()}
+        <div className={css['grid-container']}>
+            {children}
+            <div className={css['img-grid']}>
+                {getColumns()}
+            </div>
         </div>
     );
 };

@@ -1,3 +1,5 @@
+import {ReactChild, ReactNode} from "react";
+
 export enum PhotoActionTypes {
     FETCH_PHOTOS = 'FETCH_PHOTOS',
     FETCH_PHOTOS_SUCCESS = 'FETCH_PHOTOS_SUCCESS',
@@ -14,7 +16,8 @@ export interface PhotoState {
 }
 
 export interface PhotoGridProps {
-    photos: PhotosType[]
+    photos: PhotosType[],
+    children?: ReactChild | ReactNode
 }
 
 export interface PhotosType {
@@ -26,7 +29,6 @@ export interface PhotosType {
         regular: string
     }
     alt_description: string | undefined
-    tags?: TagsType[]
 }
 
 export interface UserType {
@@ -34,10 +36,6 @@ export interface UserType {
         large: string
     }
     name: string
-}
-
-interface TagsType {
-    title: string
 }
 
 export interface PhotoParamsType {

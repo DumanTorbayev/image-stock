@@ -9,14 +9,12 @@ const App: FC = () => {
     return (
         <>
             <Header/>
-            <div className="container">
-                <Route path="/" exact>
-                    <Home/>
-                </Route>
-                <Route path="/photo/:id">
-                    <Photo />
-                </Route>
-            </div>
+            <Route path="/" exact>
+                <Home/>
+            </Route>
+            <Route path="/photo/:id">
+                <Photo />
+            </Route>
         </>
     );
 }
