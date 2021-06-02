@@ -3,6 +3,8 @@ import css from "./PhotoItem.module.scss";
 import {Link} from "react-router-dom";
 import maximizeIcon from "../../../static/images/maximize-icon.svg";
 import {PhotoType} from "../../../types/photo";
+import {DownloadLink} from "../DownloadLink/DownloadLink";
+import {Button} from "../Button/Button";
 
 export const PhotoItem = ({id, user, links, urls, alt_description}: PhotoType) => {
     const {name, profile_image} = user
@@ -10,7 +12,7 @@ export const PhotoItem = ({id, user, links, urls, alt_description}: PhotoType) =
     const {download} = links
 
     return (
-        <div className={css['card']} key={id}>
+        <div className={css['card']}>
             <div className={css['card__info']}>
                 <div className={css['card__overlay']}></div>
                 <div className={css['owner']}>
@@ -24,29 +26,17 @@ export const PhotoItem = ({id, user, links, urls, alt_description}: PhotoType) =
                     </div>
                 </div>
                 <div className={css['actions']}>
-                    <button
+                    <Button
+                        onClick={() => console.log(id)}
+                        type={'inCard'}
                         className={css['actions__item']}
-                        type={"button"}
-                    >
-                        <img src={require('../../../static/images/heart-icon.svg').default}
-                             alt="Like"
-                        />
-                    </button>
-                    <Link to={`/photo/${id}`}
-                          className={css['actions__item']}
-                    >
+                    />
+
+                    <Link to={`/photo/${id}`} className={css['actions__item']}>
                         <img src={maximizeIcon} alt="maximize"/>
                     </Link>
-                    <a href={download}
-                       download
-                       target="_blank"
-                       rel='noreferrer'
-                       className={css['actions__item']}
-                    >
-                        <img src={require('../../../static/images/download-icon.svg').default}
-                             alt=""
-                        />
-                    </a>
+
+                    <DownloadLink downloadSrc={download} type={"inCard"} />
                 </div>
             </div>
             <img data-id={id} src={small} alt={alt_description}/>

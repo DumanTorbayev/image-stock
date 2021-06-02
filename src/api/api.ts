@@ -22,3 +22,11 @@ export const fetchPhotos = (page: number, limit: number) => {
             params: {page, per_page: limit}
         })
 }
+
+export const likePhoto = (id: string) => {
+    return apiInstance.post(`/photos/${id}/like`)
+}
+
+export const unlikePhoto = (id: string) => {
+    return apiInstance.delete(`/photos/${id}/like`)
+}

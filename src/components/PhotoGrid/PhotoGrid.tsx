@@ -21,7 +21,7 @@ export const PhotoGrid: FC<PhotoGridProps> = ({photos, children}) => {
                 columnClassName={css['column']}
             >
                 {photos.map((items, index) =>
-                    <PhotoItem key={`${items.id}${index}`} {...items}/>
+                    <PhotoItem key={`${index}${items.id}${index}`} {...items}/>
                 )}
             </Masonry>
         </div>
