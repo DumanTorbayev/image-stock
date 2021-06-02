@@ -1,13 +1,14 @@
 import React, {FC} from 'react'
 import css from './Header.module.scss'
+import logo from '../../static/images/logo.svg'
 
-const Header: FC = () => {
+export const Header: FC = () => {
     return (
         <header className={css.header}>
             <div className="container">
                 <div className={css.header__top}>
                     <a href="/" className={css.logo}>
-                        <img src={require('../../static/images/logo.svg').default} alt=""/>
+                        <img src={logo} alt=""/>
                         ImageStock
                     </a>
                 </div>
@@ -15,5 +16,3 @@ const Header: FC = () => {
         </header>
     );
 };
-
-export default Header;

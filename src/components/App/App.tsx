@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {Route} from 'react-router-dom'
-import Header from "../Header/Header";
-import Home from "../../pages/Home";
-import Photo from "../../pages/Photo";
+import {Header} from "../Header/Header";
+import {Photo} from "../Pages/Photo";
+import {Home} from "../Pages/Home";
 
 const App: FC = () => {
 
