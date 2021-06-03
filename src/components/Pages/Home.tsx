@@ -1,16 +1,17 @@
 import React, {FC, useEffect} from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
-import {useTypedSelector} from "../../hooks/PhotoTypedSelector";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions} from "../../hooks/useActions";
 import {PhotoGrid} from "../PhotoGrid/PhotoGrid";
 import {useLocation} from "react-router-dom";
+import {getPhotoCollection} from "../../store/photoCollection/selectors";
 
 interface LocationType {
     pathname: string
 }
 
 export const Home: FC = () => {
-    const {photos, error, loading, page, limit} = useTypedSelector(state => state.photoCollection)
+    const {photos, error, loading, page, limit} = useTypedSelector(getPhotoCollection)
     const {handleFetchPhotos, setPhotoPage, clearPhotos} = useActions()
     let location = useLocation<LocationType>()
 

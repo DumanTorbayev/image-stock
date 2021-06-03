@@ -23,6 +23,11 @@ export const fetchPhotos = (page: number, limit: number) => {
         })
 }
 
+export const fetchFavorites = (user: string) => {
+    return apiInstance.get(`/users/${user}/likes`)
+
+}
+
 export const likePhoto = (id: string) => {
     return apiInstance.post(`/photos/${id}/like`)
 }

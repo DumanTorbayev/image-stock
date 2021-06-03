@@ -2,6 +2,12 @@
     width: 100%;
     padding: 25px 0;
     background-color: #000;
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .logo {
@@ -15,5 +21,19 @@
 
     img {
         margin-right: 24px;
+    }
+}
+
+.favorites {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFFFFF;
+    text-decoration: none;
+
+    img {
+        width: 23px;
+        margin-right: 10px;
     }
 }

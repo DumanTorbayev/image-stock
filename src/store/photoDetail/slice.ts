@@ -27,7 +27,5 @@ const photoSlice = createSlice({
     }
 })
 
-const {reducer: photo, actions} = photoSlice
-
-export const {} = actions
-export default photo
+export const {} = photoSlice.actions
+export default photoSlice.reducer

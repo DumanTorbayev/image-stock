@@ -40,7 +40,7 @@ export const PhotoDetail: FC<PhotoType> = (
                         />
 
                         <DownloadLink downloadSrc={download} type={"inner-page"}>
-                            Download
+                            Скачать
                         </DownloadLink>
                     </div>
                 </div>
