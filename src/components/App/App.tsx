@@ -11,13 +11,13 @@ const App: FC = () => {
         <>
             <Header/>
             <Switch>
-                <Route path="/image-stock" exact>
+                <Route exact path="/">
                     <Home/>
                 </Route>
-                <Route path="/image-stock/photo/:id">
+                <Route path="/photo/:id">
                     <Photo />
                 </Route>
-                <Route path="/image-stock/favorites" exact>
+                <Route path="/favorites">
                     <Favorites />
                 </Route>
             </Switch>
