@@ -1,6 +1,6 @@
-import {PhotoType, RelatedPhotoType} from "../../../types/photo";
+import {PhotoType, RelatedPhotoType} from "../../types/photo";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {handleFetchPhotos, handleFetchRelatedPhotos} from "../actions";
+import {handleFetchPhotos, handleFetchRelatedPhotos} from "./actions";
 
 export interface PhotoState {
     photos: PhotoType[]
@@ -33,8 +33,8 @@ const photoSlice = createSlice({
         builder.addCase(handleFetchPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
             state.photos = state.photos.concat(action.payload)
         })
-        builder.addCase(handleFetchRelatedPhotos.fulfilled, (state, action: PayloadAction<RelatedPhotoType>) => {
-            state.photos = action.payload.results
+        builder.addCase(handleFetchRelatedPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
+            state.photos = action.payload
         })
     }
 })

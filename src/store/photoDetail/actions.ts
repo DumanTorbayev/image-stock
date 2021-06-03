@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import Api from '../../../api'
-import {PhotoParamsType} from "../../../types/photo";
+import Api from '../../api'
+import {PhotoParamsType} from "../../types/photo";
 
 const {fetchPhotoById} = Api
 

@@ -1,6 +1,6 @@
-import {PhotoType} from "../../../types/photo";
+import {PhotoType} from "../../types/photo";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {handleFetchPhotoById} from "../actions";
+import {handleFetchPhotoById} from "./actions";
 
 interface PhotoStateType {
     photo: PhotoType | null

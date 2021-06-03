@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import Api from '../../../api'
-import {PhotoParamsType} from "../../../types/photo";
+import Api from '../../api'
+import {PhotoParamsType} from "../../types/photo";
 
 const {fetchPhotos, fetchRelatedPhoto} = Api
 
@@ -21,7 +21,7 @@ export const handleFetchRelatedPhotos = createAsyncThunk(
     async (params: PhotoParamsType) => {
         try {
             const response = await fetchRelatedPhoto(params)
-            return response.data
+            return response.data.results
         } catch (e) {
             console.log(e)
         }

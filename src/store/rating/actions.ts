@@ -1,4 +1,4 @@
-import Api from '../../../api'
+import Api from '../../api'
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
 const {likePhoto, unlikePhoto} = Api;

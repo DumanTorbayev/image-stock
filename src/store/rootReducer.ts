@@ -1,6 +1,6 @@
 import {combineReducers} from "@reduxjs/toolkit";
-import photoCollection from "./photoCollection/reducer";
-import photo from "./photoDetail/reducer";
+import photoCollection from "./photoCollection/slice";
+import photo from "./photoDetail/slice";
 
 export const rootReducer = combineReducers({
     photoCollection,
