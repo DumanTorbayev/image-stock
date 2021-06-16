@@ -5,6 +5,7 @@ import {Button} from "../UI/Button/Button";
 import {DownloadLink} from "../UI/DownloadLink/DownloadLink";
 import {handleAddInArr} from "../../utils/addInArr/handleAddInArr";
 import {useActions} from "../../hooks/useActions";
+import ResponsiveImage from "../UI/ResponsiveImage/ResponsiveImage";
 
 export const PhotoDetail: FC<PhotoType> = (
     {
@@ -12,7 +13,9 @@ export const PhotoDetail: FC<PhotoType> = (
         user,
         urls,
         alt_description,
-        links
+        links,
+        width,
+        height
     }
 ) => {
     const {setIsDelete} = useActions()
@@ -35,7 +38,7 @@ export const PhotoDetail: FC<PhotoType> = (
                     <div className={css.buttons}>
                         <Button
                             onClick={() => handleAddInArr(
-                                {id, user, links, urls, alt_description},
+                                {id, user, links, urls, alt_description, width, height},
                                 setIsDelete,
                             )}
                             type={'inner-page'}
@@ -47,9 +50,7 @@ export const PhotoDetail: FC<PhotoType> = (
                     </div>
                 </div>
 
-                <div className={css['img-container']}>
-                    <img src={regular} alt={alt_description}/>
-                </div>
+                <ResponsiveImage width={width} height={height} src={regular} alt={alt_description}/>
             </div>
         </div>
     );

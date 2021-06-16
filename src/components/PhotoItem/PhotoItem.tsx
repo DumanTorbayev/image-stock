@@ -7,10 +7,8 @@ import {DownloadLink} from "../UI/DownloadLink/DownloadLink";
 import {Button} from "../UI/Button/Button";
 import {useActions} from "../../hooks/useActions";
 import {handleAddInArr} from "../../utils/addInArr/handleAddInArr";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {getIsDelete} from "../../store/favorites/selectors";
 
-export const PhotoItem = ({id, user, links, urls, alt_description}: PhotoType) => {
+export const PhotoItem = ({id, user, links, urls, alt_description, width, height}: PhotoType) => {
     const {setIsDelete} = useActions()
 
     const {name, profile_image} = user
@@ -34,10 +32,11 @@ export const PhotoItem = ({id, user, links, urls, alt_description}: PhotoType) =
                 <div className={css['actions']}>
                     <Button
                         onClick={() => handleAddInArr(
-                            {id, user, links, urls, alt_description},
+                            {id, user, links, urls, alt_description, width, height},
                             setIsDelete
                         )}
                         type={'inCard'}
+                        className={css['actions__item']}
                     />
 
                     <Link to={`/photo/${id}`} className={css['actions__item']}>

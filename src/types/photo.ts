@@ -15,6 +15,8 @@ export interface PhotoType {
         regular: string
     }
     alt_description: string | undefined
+    width: number,
+    height: number
 }
 
 export interface RelatedPhotoType {
