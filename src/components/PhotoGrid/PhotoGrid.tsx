@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import css from './PhotoGrid.module.scss'
 import Masonry from "react-masonry-css";
 import {PhotoGridProps} from "../../types/photo";
-import {PhotoItem} from "../UI/PhotoItem/PhotoItem";
+import {PhotoItem} from "../PhotoItem/PhotoItem";
 
 const breakpointColumns = {
     default: 3,
@@ -20,9 +20,11 @@ export const PhotoGrid: FC<PhotoGridProps> = ({photos, children}) => {
                 className={css['grid']}
                 columnClassName={css['column']}
             >
-                {photos.map((items, index) =>
-                    <PhotoItem key={`${items.id}${index}`} {...items}/>
-                )}
+                {photos
+                    ? photos.map((items, index) =>
+                        <PhotoItem key={`${items.id}${index}`} {...items}/>
+                    )
+                : '' }
             </Masonry>
         </div>
     );

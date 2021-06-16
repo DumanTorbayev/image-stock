@@ -1,32 +1,33 @@
-import {PhotoType} from "../../types/photo";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {handleFetchFavorites} from "./actions";
+import {PhotoType} from "../../types/photo";
 
 interface FavoriteTypes {
     photos: PhotoType[]
-    loading: boolean
+    deletedId: string | null
+    checkedId: string | null
 }
 
 const initialState: FavoriteTypes = {
     photos: [],
-    loading: false,
+    deletedId: null,
+    checkedId: null,
 }
 
 const favoriteSlice = createSlice({
     name: 'favorite',
     initialState,
     reducers: {
-
-    },
-    extraReducers: builder => {
-        builder.addCase(handleFetchFavorites.pending, (state => {
-            state.loading = true
-        }))
-        builder.addCase(handleFetchFavorites.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
-            state.loading = false
+        setIsDelete(state, action: PayloadAction<string>) {
+            state.deletedId = action.payload
+        },
+        setIsChecked(state, action: PayloadAction<string>) {
+            state.deletedId = action.payload
+        },
+        setFavoritesPhoto(state, action: PayloadAction<PhotoType[]>) {
             state.photos = action.payload
-        })
-    }
+        }
+    },
 })
 
+export const {setIsDelete, setIsChecked, setFavoritesPhoto} = favoriteSlice.actions
 export default favoriteSlice.reducer

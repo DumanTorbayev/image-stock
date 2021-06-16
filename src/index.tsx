@@ -7,7 +7,7 @@ import {store} from "./store";
 import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
-    <BrowserRouter basename='/'>
+    <BrowserRouter>
         <Provider store={store}>
             <App/>
         </Provider>
