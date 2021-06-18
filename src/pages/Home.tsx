@@ -6,7 +6,7 @@ import {PhotoGrid} from "../components/PhotoGrid/PhotoGrid";
 import {getPhotoCollection} from "../store/photoCollection/selectors";
 
 export const Home: FC = () => {
-    const {photos, loading, page, limit} = useTypedSelector(getPhotoCollection)
+    const {photos, page, limit} = useTypedSelector(getPhotoCollection)
     const {handleFetchPhotos, setPhotoPage, clearPhotos} = useActions()
 
     useEffect(() => {
