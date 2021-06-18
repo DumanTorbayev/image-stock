@@ -2,11 +2,12 @@ import React, {useEffect} from 'react';
 import {PhotoGrid} from "../components/PhotoGrid/PhotoGrid";
 import {getStorage} from "../utils/storage/storage";
 import {useTypedSelector} from "../hooks/useTypedSelector";
-import {getIsDelete} from "../store/favorites/selectors";
+import {getFavorite} from "../store/favorites/selectors";
 import {useActions} from "../hooks/useActions";
+import PhotoNotFound from "../components/UI/PhotoNotFound/PhotoNotFound";
 
 const Favorites = () => {
-    const {photos, deletedId} = useTypedSelector(getIsDelete)
+    const {photos, deletedId} = useTypedSelector(getFavorite)
     const {setFavoritesPhoto} = useActions()
 
     useEffect(() => {
@@ -15,9 +16,12 @@ const Favorites = () => {
 
     return (
         <div className={'container'}>
-            <PhotoGrid photos={photos}/>
+            {photos && photos.length !== 0
+                ? <PhotoGrid photos={photos}/>
+                : <PhotoNotFound>Нет избранных фото</PhotoNotFound>
+            }
         </div>
     );
-};
+}
 
 export default Favorites;

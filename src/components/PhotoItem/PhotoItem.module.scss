@@ -17,6 +17,7 @@
         left: 0;
         right: 0;
         background-color: rgba(0, 0, 0, .5);
+        border-radius: 8px;
     }
 
     &__info {
@@ -25,6 +26,7 @@
         align-items: center;
         justify-content: center;
         position: absolute;
+        z-index: 3;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -43,15 +45,15 @@
         align-items: center;
 
         &__img {
-            width: 60px;
-            height: 60px;
+            width: 45px;
+            height: 45px;
             margin-bottom: 13px;
             border: 1px solid #fff;
             border-radius: 8px;
         }
 
         &__name {
-            font-size: 24px;
+            font-size: 20px;
             line-height: 1;
             color: #fff;
         }
@@ -62,19 +64,14 @@
         z-index: 1;
         display: flex;
         align-items: center;
-        justify-content: center;
-        margin-top: 10%;
+        justify-content: space-around;
+        width: 45%;
+        margin-top: 5%;
 
-        &__item {
-            width: 34px;
-            height: 34px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-
-            &:not(:last-child) {
-                margin-right: 40px;
-            }
+        svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
         }
     }
 }

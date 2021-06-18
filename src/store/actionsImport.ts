@@ -10,5 +10,5 @@ export default {
     clearPhotos,
     setIsDelete,
     setIsChecked,
-    setFavoritesPhoto
+    setFavoritesPhoto,
 }

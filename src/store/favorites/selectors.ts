@@ -1,3 +1,3 @@
 import {RootState} from "../rootReducer";
 
-export const getIsDelete = (state: RootState) => state.favorite
+export const getFavorite = (state: RootState) => state.favorite

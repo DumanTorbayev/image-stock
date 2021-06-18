@@ -19,10 +19,6 @@ export interface PhotoType {
     height: number
 }
 
-export interface RelatedPhotoType {
-    results: PhotoType[]
-}
-
 export interface PhotoParamsType {
     id: string
 }

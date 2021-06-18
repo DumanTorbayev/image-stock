@@ -1,9 +1,9 @@
 import {PhotoType} from "../../types/photo";
 import {getStorage, setStorage} from "../storage/storage";
 
-export const handleAddInArr = (
+export const handleAddInStorage = (
     data: PhotoType,
-    setIsDelete: (arg0: string) => void
+    setIsDelete: (arg0: string) => void,
 ) => {
     const localeStorageItem = getStorage('favorites')
     let favoritesArr = localeStorageItem ? localeStorageItem : []

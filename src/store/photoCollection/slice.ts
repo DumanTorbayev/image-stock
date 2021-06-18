@@ -1,4 +1,4 @@
-import {PhotoType, RelatedPhotoType} from "../../types/photo";
+import {PhotoType} from "../../types/photo";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {handleFetchPhotos, handleFetchRelatedPhotos} from "./actions";
 

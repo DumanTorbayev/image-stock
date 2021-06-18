@@ -10,7 +10,7 @@ interface FavoriteTypes {
 const initialState: FavoriteTypes = {
     photos: [],
     deletedId: null,
-    checkedId: null,
+    checkedId: null
 }
 
 const favoriteSlice = createSlice({
