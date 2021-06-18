@@ -1,9 +1,19 @@
-# Stock images based on api unsplash
-[Demo](https://dumantorbayev.github.io/image-stock/)
+# Images stock based on api unsplash
 
-## Getting Started with Create React App
+### [Demo Link](https://dumantorbayev.github.io/image-stock/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Stack
+* React (Create React App)
+* Typescript
+* Redux
+* Redux Toolkit
+* Axios
+* SCSS
+
+## Beginning of work
+* ```git clone```
+* ```yarn install``` or ```npm install```
+
 
 ## Available Scripts
 
