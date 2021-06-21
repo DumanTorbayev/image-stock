@@ -11,7 +11,7 @@
 * SCSS
 
 ## Beginning of work
-* ```git clone```
+* ```git clone https://github.com/DumanTorbayev/image-stock.git```
 * ```yarn install``` or ```npm install```
 
 
