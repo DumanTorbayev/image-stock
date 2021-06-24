@@ -1,0 +1,20 @@
+@font-face {
+    font-family: SegoeUi;
+    src: url('../fonts/SegoeUIRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: SegoeUi;
+    src: url('../fonts/SegoeUISemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: "SegoeUi", sans-serif;
+    font-size: 16px;
+}
