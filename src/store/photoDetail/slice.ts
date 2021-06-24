@@ -1,6 +1,18 @@
-import {PhotoType} from "../../types/photo";
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {handleFetchPhotoById} from "./actions";
+import {PhotoParamsType, PhotoType} from "../../types/photo";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {fetchPhotoById} from "../../api/api";
+
+export const handleFetchPhotoById = createAsyncThunk(
+    'photo/fetchPhotoById',
+    async (params: PhotoParamsType) => {
+        try {
+            const response = await fetchPhotoById(params)
+            return response.data
+        } catch (e) {
+            console.log(e)
+        }
+    }
+)
 
 interface PhotoStateType {
     photo: PhotoType | null

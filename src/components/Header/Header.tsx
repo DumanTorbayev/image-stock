@@ -1,8 +1,6 @@
 import React, {FC} from 'react'
 import css from './Header.module.scss'
 import { Link } from 'react-router-dom';
-import logo from '../../static/images/logo.svg'
-import heart from '../../static/images/heart-icon.svg'
 
 export const Header: FC = () => {
     return (
@@ -10,12 +8,12 @@ export const Header: FC = () => {
             <div className="container">
                 <div className={css.header__top}>
                     <Link to="/" className={css.logo}>
-                        <img src={logo} alt=""/>
+                        <img src={`${process.env.PUBLIC_URL}/img/logo.svg`} alt=""/>
                         ImageStock
                     </Link>
 
                     <Link to="/favorites" className={css.favorites}>
-                        <img src={heart} alt=""/>
+                        <img src={`${process.env.PUBLIC_URL}/img/heart-icon.svg`} alt=""/>
                         Избранное
                     </Link>
                 </div>

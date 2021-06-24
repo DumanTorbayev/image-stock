@@ -3,24 +3,21 @@ import {Route, Switch} from 'react-router-dom'
 import {Header} from "../Header/Header";
 import {Photo} from "../../pages/Photo";
 import {Home} from "../../pages/Home";
-import Favorites from "../../pages/Favorites";
+import {Favorites} from "../../pages/Favorites";
 
-const App: FC = () => {
-
+export const App: FC = () => {
     return (
         <>
             <Header/>
             <Route exact path="/">
-                <Home />
+                <Home/>
             </Route>
             <Route path="/photo/:id">
-                <Photo />
+                <Photo/>
             </Route>
             <Route path="/favorites">
-                <Favorites />
+                <Favorites/>
             </Route>
         </>
     );
 }
-
-export default App;

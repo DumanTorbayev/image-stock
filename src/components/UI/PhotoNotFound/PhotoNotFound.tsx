@@ -5,12 +5,10 @@ interface PhotoNotFoundType {
     children?: ReactChildren | ReactNode
 }
 
-const PhotoNotFound: FC<PhotoNotFoundType> = ({children}) => {
+export const PhotoNotFound: FC<PhotoNotFoundType> = ({children}) => {
     return (
         <div className={css['container']}>
             {children}
         </div>
     );
 };
-
-export default PhotoNotFound;

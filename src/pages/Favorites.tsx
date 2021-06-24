@@ -1,18 +1,20 @@
 import React, {useEffect} from 'react';
 import {PhotoGrid} from "../components/PhotoGrid/PhotoGrid";
-import {getStorage} from "../utils/storage/storage";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {getFavorite} from "../store/favorites/selectors";
 import {useActions} from "../hooks/useActions";
-import PhotoNotFound from "../components/UI/PhotoNotFound/PhotoNotFound";
+import utils from "../utils";
+import {PhotoNotFound} from "../components/UI/PhotoNotFound/PhotoNotFound";
+import {FAVORITES} from "../constants";
 
-const Favorites = () => {
-    const {photos, deletedId} = useTypedSelector(getFavorite)
+export const Favorites = () => {
+    const {photos} = useTypedSelector(getFavorite)
     const {setFavoritesPhoto} = useActions()
+    const {getStorage} = utils
 
     useEffect(() => {
-        setFavoritesPhoto(getStorage('favorites'))
-    }, [deletedId])
+        setFavoritesPhoto(getStorage(FAVORITES))
+    }, [])
 
     return (
         <div className={'container'}>
@@ -23,5 +25,3 @@ const Favorites = () => {
         </div>
     );
 }
-
-export default Favorites;

@@ -1,11 +1,8 @@
 import React, {FC} from 'react';
 import css from './PhotoDetail.module.scss'
 import {PhotoType} from "../../types/photo";
-import {Button} from "../UI/Button/Button";
-import {DownloadLink} from "../UI/DownloadLink/DownloadLink";
-import {handleAddInStorage} from "../../utils/addInStorage/handleAddInStorage";
 import {useActions} from "../../hooks/useActions";
-import ResponsiveImage from "../UI/ResponsiveImage/ResponsiveImage";
+import UiComponents from "../UI"
 
 export const PhotoDetail: FC<PhotoType> = (
     {
@@ -18,7 +15,8 @@ export const PhotoDetail: FC<PhotoType> = (
         height
     }
 ) => {
-    const {setIsDelete} = useActions()
+    const {setInFavorites} = useActions()
+    const {DownloadLink, Button, ResponsiveImage} = UiComponents
 
     const {profile_image, name} = user
     const {regular, small} = urls
@@ -37,10 +35,7 @@ export const PhotoDetail: FC<PhotoType> = (
                     </div>
                     <div className={css.buttons}>
                         <Button
-                            onClick={() => handleAddInStorage(
-                                {id, user, links, urls, alt_description, width, height},
-                                setIsDelete
-                            )}
+                            onClick={() => setInFavorites({id, user, links, urls, alt_description, width, height})}
                             detailPage
                         >
                             <svg viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">

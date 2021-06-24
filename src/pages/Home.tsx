@@ -3,7 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 import {PhotoGrid} from "../components/PhotoGrid/PhotoGrid";
-import {getPhotoCollection} from "../store/photoCollection/selectors";
+import {getPhotoCollection} from "../store/photos/selectors";
 
 export const Home: FC = () => {
     const {photos, page, limit} = useTypedSelector(getPhotoCollection)

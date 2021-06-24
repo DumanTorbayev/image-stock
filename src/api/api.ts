@@ -1,7 +1,7 @@
 import axios from "axios";
 import {PhotoParamsType} from "../types/photo";
 
-const apiInstance = axios.create({
+const api = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL}`,
     headers: {
         "Authorization": `Client-ID ${process.env.REACT_APP_API_KEY}`,
@@ -9,15 +9,15 @@ const apiInstance = axios.create({
 });
 
 export const fetchPhotoById = (params: PhotoParamsType) => {
-    return apiInstance.get(`/photos/${params.id}`)
+    return api.get(`/photos/${params.id}`)
 }
 
 export const fetchRelatedPhoto = (params: PhotoParamsType) => {
-    return apiInstance.get(`/photos/${params.id}/related`)
+    return api.get(`/photos/${params.id}/related`)
 }
 
 export const fetchPhotos = (page: number, limit: number) => {
-    return apiInstance.get(`/photos`,
+    return api.get(`/photos`,
         {
             params: {page, per_page: limit}
         })

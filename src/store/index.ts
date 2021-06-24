@@ -1,6 +1,13 @@
-import {rootReducer} from "./rootReducer";
-import {configureStore} from "@reduxjs/toolkit";
+import {clearPhotos, handleFetchPhotos, handleFetchRelatedPhotos, setPhotoPage} from "./photos/slice";
+import {handleFetchPhotoById} from "./photoDetail/slice";
+import {setFavoritesPhoto, setInFavorites} from "./favorites/slice";
 
-export const store = configureStore({
-    reducer: rootReducer
-})
+export default {
+    handleFetchPhotos,
+    handleFetchRelatedPhotos,
+    setPhotoPage,
+    clearPhotos,
+    handleFetchPhotoById,
+    setFavoritesPhoto,
+    setInFavorites
+}

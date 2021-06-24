@@ -6,8 +6,8 @@ import {PhotoParamsType} from "../types/photo";
 import {Preloader} from "../components/UI/Preloader/Preloader";
 import {PhotoGrid} from "../components/PhotoGrid/PhotoGrid";
 import {PhotoDetail} from "../components/PhotoDetail/PhotoDetail";
-import {onScrollToTop} from "../utils/scroll/ScrollToTop";
-import {getPhotoCollection} from "../store/photoCollection/selectors";
+import utils from "../utils";
+import {getPhotoCollection} from "../store/photos/selectors";
 import {getPhoto} from "../store/photoDetail/selectors";
 
 
@@ -16,11 +16,12 @@ export const Photo: FC = () => {
     const {photos} = useTypedSelector(getPhotoCollection)
     const {handleFetchPhotoById, handleFetchRelatedPhotos} = useActions()
     const params = useParams<PhotoParamsType>()
+    const {scrollToTop} = utils
 
     useEffect(() => {
         handleFetchPhotoById(params)
         handleFetchRelatedPhotos(params)
-        onScrollToTop()
+        scrollToTop()
     }, [params.id])
 
     if (loading) {

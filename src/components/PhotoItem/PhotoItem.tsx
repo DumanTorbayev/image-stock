@@ -5,11 +5,10 @@ import {PhotoType} from "../../types/photo";
 import {DownloadLink} from "../UI/DownloadLink/DownloadLink";
 import {Button} from "../UI/Button/Button";
 import {useActions} from "../../hooks/useActions";
-import {handleAddInStorage} from "../../utils/addInStorage/handleAddInStorage";
-import ResponsiveImage from "../UI/ResponsiveImage/ResponsiveImage";
+import {ResponsiveImage} from "../UI/ResponsiveImage/ResponsiveImage";
 
 export const PhotoItem = ({id, user, links, urls, alt_description, width, height}: PhotoType) => {
-    const {setIsDelete} = useActions()
+    const {setInFavorites} = useActions()
 
     const {name, profile_image} = user
     const {small} = urls
@@ -31,12 +30,8 @@ export const PhotoItem = ({id, user, links, urls, alt_description, width, height
                 </div>
                 <div className={css['actions']}>
                     <Button
-                        onClick={() => handleAddInStorage(
-                            {id, user, links, urls, alt_description, width, height},
-                            setIsDelete
-                        )}
+                        onClick={() => setInFavorites({id, user, links, urls, alt_description, width, height})}
                         photoCard
-                        /*className={`${inFavorite ? 'active' : ''}`}*/
                     >
                         <svg viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path

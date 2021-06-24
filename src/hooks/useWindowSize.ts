@@ -5,7 +5,7 @@ interface WindowSize {
     h: number
 }
 
-function useWindowSize(): WindowSize {
+export function useWindowSize(): WindowSize {
     const [windowSize, setWindowSize] = useState<WindowSize>({
         w: 0,
         h: 0,
@@ -33,5 +33,3 @@ function useWindowSize(): WindowSize {
 
     return windowSize
 }
-
-export default useWindowSize

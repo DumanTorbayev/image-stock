@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import css from './ResponsiveImage.module.scss'
-import useWindowSize from "../../../hooks/useWindowSize";
+import {useWindowSize} from "../../../hooks/useWindowSize";
 
 interface ResponsiveImageType {
     src: string
@@ -11,7 +11,7 @@ interface ResponsiveImageType {
     shadow: boolean
 }
 
-const ResponsiveImage: FC<ResponsiveImageType> = ({src, alt, width, height, dataId, shadow}) => {
+export const ResponsiveImage: FC<ResponsiveImageType> = ({src, alt, width, height, dataId, shadow}) => {
     const { w, h } = useWindowSize()
 
     return (
@@ -24,5 +24,3 @@ const ResponsiveImage: FC<ResponsiveImageType> = ({src, alt, width, height, data
         </div>
     );
 };
-
-export default ResponsiveImage;
