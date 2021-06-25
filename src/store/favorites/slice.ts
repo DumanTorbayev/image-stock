@@ -6,11 +6,13 @@ import {getStorage, setStorage} from "../../utils/storage/storage";
 interface FavoriteTypes {
     photos: PhotoType[]
     checkedId: string | null
+    removedPhotoId: string | null
 }
 
 const initialState: FavoriteTypes = {
     photos: [],
-    checkedId: null
+    checkedId: null,
+    removedPhotoId: null
 }
 
 const favoriteSlice = createSlice({
@@ -28,6 +30,7 @@ const favoriteSlice = createSlice({
 
             if (index !== -1) {
                 arr.splice(index, 1)
+                state.removedPhotoId = state.removedPhotoId === action.payload.id ? null : action.payload.id
                 setStorage(FAVORITES, arr)
             } else {
                 arr.push(action.payload)

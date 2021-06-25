@@ -1,8 +1,11 @@
 import {PhotoParamsType, PhotoType} from "../../types/photo";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {fetchPhotos, fetchRelatedPhoto} from "../../api/api";
+import {normalize, schema} from "normalizr"
 
 const _ = require("lodash")
+
+const userEntity = new schema.Entity('users')
 
 interface fetchPhotosParamsType {
     page: number
@@ -14,6 +17,9 @@ export const handleFetchPhotos = createAsyncThunk(
     async ({page, limit}: fetchPhotosParamsType) => {
         try {
             const response = await fetchPhotos(page, limit)
+
+            // const normalized = normalize(response.data, [userEntity])
+            // return normalized.entities
             return response.data
         } catch (e) {
             console.log(e)
@@ -62,7 +68,6 @@ const photoSlice = createSlice({
     },
     extraReducers: builder => {
         builder.addCase(handleFetchPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
-            //state.photos = state.photos.concat(action.payload)
             state.photos = _.uniqBy(state.photos.concat(action.payload), 'id')
         })
         builder.addCase(handleFetchRelatedPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
