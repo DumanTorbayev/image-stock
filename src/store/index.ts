@@ -1,13 +1,16 @@
-import {clearPhotos, handleFetchPhotos, handleFetchRelatedPhotos, setPhotoPage} from "./photos/slice";
-import {handleFetchPhotoById} from "./photoDetail/slice";
+import {clearPhotos, getPhotos, setIsLoading, setPhotoPage} from "./photos/slice";
+import {getFetchPhotoById, getRelatedPhotos,} from "./photoDetail/slice";
 import {setFavoritesPhoto, setInFavorites} from "./favorites/slice";
+import {getUser} from "./user/slice";
 
 export default {
-    handleFetchPhotos,
-    handleFetchRelatedPhotos,
+    getPhotos,
+    getRelatedPhotos,
     setPhotoPage,
     clearPhotos,
-    handleFetchPhotoById,
+    getFetchPhotoById,
     setFavoritesPhoto,
-    setInFavorites
+    setInFavorites,
+    getUser,
+    setIsLoading,
 }

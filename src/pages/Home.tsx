@@ -4,17 +4,19 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 import {PhotoGrid} from "../components/PhotoGrid/PhotoGrid";
 import {getPhotoCollection} from "../store/photos/selectors";
+import {Preloader} from "../components/UI/Preloader/Preloader";
 
 export const Home: FC = () => {
-    const {photos, page, limit} = useTypedSelector(getPhotoCollection)
-    const {handleFetchPhotos, setPhotoPage, clearPhotos} = useActions()
+    const {photos, page, limit, loading} = useTypedSelector(getPhotoCollection)
+    const {getPhotos, setPhotoPage, clearPhotos, setIsLoading} = useActions()
 
     useEffect(() => {
         clearPhotos()
+        setIsLoading(true)
     }, [])
 
     useEffect(() => {
-        handleFetchPhotos({page, limit})
+        getPhotos({page, limit})
     }, [page, limit])
 
     const handleSetPhotoPage = () => {
@@ -22,16 +24,25 @@ export const Home: FC = () => {
         setPhotoPage(nextPage)
     }
 
+    if (loading) {
+        return (
+            <Preloader/>
+        );
+    }
+
     return (
-        <div className="container">
-            <InfiniteScroll
-                next={handleSetPhotoPage}
-                hasMore={true} loader={''}
-                dataLength={photos.length}
-                scrollThreshold={.7}
-            >
-                <PhotoGrid photos={photos}/>
-            </InfiniteScroll>
-        </div>
+        <>
+            <div className="container">
+                <InfiniteScroll
+                    next={handleSetPhotoPage}
+                    hasMore={true} loader={''}
+                    dataLength={photos.length}
+                    scrollThreshold={.7}
+                >
+                    <PhotoGrid photos={photos}/>
+                </InfiniteScroll>
+            </div>
+        </>
+
     );
 };

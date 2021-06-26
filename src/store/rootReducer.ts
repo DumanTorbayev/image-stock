@@ -1,12 +1,14 @@
 import {combineReducers} from "@reduxjs/toolkit";
-import photoCollection from "./photos/slice";
-import photo from "./photoDetail/slice";
-import favorite from "./favorites/slice";
+import photos from "./photos/slice";
+import photoDetail from "./photoDetail/slice";
+import favorites from "./favorites/slice";
+import user from "./user/slice";
 
 export const rootReducer = combineReducers({
-    photoCollection,
-    photo,
-    favorite
+    photos,
+    photoDetail,
+    favorites,
+    user,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

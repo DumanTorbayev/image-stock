@@ -1,9 +1,9 @@
 import {PhotoParamsType, PhotoType} from "../../types/photo";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {fetchPhotoById} from "../../api/api";
+import {fetchPhotoById, fetchRelatedPhoto} from "../../api/api";
 
-export const handleFetchPhotoById = createAsyncThunk(
-    'photo/fetchPhotoById',
+export const getFetchPhotoById = createAsyncThunk(
+    'photo/getPhotoById',
     async (params: PhotoParamsType) => {
         try {
             const response = await fetchPhotoById(params)
@@ -14,30 +14,47 @@ export const handleFetchPhotoById = createAsyncThunk(
     }
 )
 
-interface PhotoStateType {
+export const getRelatedPhotos = createAsyncThunk(
+    'photos/getRelatedPhotos',
+    async (params: PhotoParamsType) => {
+        try {
+            const response = await fetchRelatedPhoto(params)
+            return response.data.results
+        } catch (e) {
+            console.log(e)
+        }
+    }
+)
+
+interface photoDetailStateType {
+    photos: PhotoType[]
     photo: PhotoType | null
     loading: boolean
 }
 
-const initialState: PhotoStateType = {
+const initialState: photoDetailStateType = {
+    photos: [],
     photo: null,
     loading: false,
 }
 
-const photoSlice = createSlice({
-    name: 'photo',
+const photoDetail = createSlice({
+    name: 'photoDetail',
     initialState,
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(handleFetchPhotoById.pending, (state) => {
+        builder.addCase(getFetchPhotoById.pending, (state) => {
             state.loading = true
         })
-        builder.addCase(handleFetchPhotoById.fulfilled, (state, action: PayloadAction<PhotoType>) => {
+        builder.addCase(getFetchPhotoById.fulfilled, (state, action: PayloadAction<PhotoType>) => {
             state.photo = action.payload
             state.loading = false
+        })
+        builder.addCase(getRelatedPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
+            state.photos = action.payload
         })
     }
 })
 
-export const {} = photoSlice.actions
-export default photoSlice.reducer
+export const {} = photoDetail.actions
+export default photoDetail.reducer

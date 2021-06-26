@@ -10,15 +10,15 @@ import {ResponsiveImage} from "../UI/ResponsiveImage/ResponsiveImage";
 export const PhotoItem = ({id, user, links, urls, alt_description, width, height}: PhotoType) => {
     const {setInFavorites} = useActions()
 
-    const {name, profile_image} = user
-    const {small} = urls
+    const {name, profile_image, username} = user
+    const {small, regular} = urls
     const {download} = links
 
     return (
         <div className={css['card']}>
             <div className={css['card__info']}>
                 <div className={css['card__overlay']}/>
-                <div className={css['owner']}>
+                <Link to={`/user/${username}`} className={css['owner']}>
                     <img
                         className={css['owner__img']}
                         src={profile_image.large}
@@ -27,7 +27,7 @@ export const PhotoItem = ({id, user, links, urls, alt_description, width, height
                     <div className={css['owner__name']}>
                         {name}
                     </div>
-                </div>
+                </Link>
                 <div className={css['actions']}>
                     <Button
                         onClick={() => setInFavorites({id, user, links, urls, alt_description, width, height})}
@@ -68,12 +68,12 @@ export const PhotoItem = ({id, user, links, urls, alt_description, width, height
             </div>
 
             <ResponsiveImage
-                src={small}
+                src={regular}
                 alt={alt_description}
                 width={width}
                 height={height}
                 dataId={id}
-                shadow={false}
+                detailPage={false}
             />
         </div>
     );

@@ -15,8 +15,8 @@ const initialState: FavoriteTypes = {
     removedPhotoId: null
 }
 
-const favoriteSlice = createSlice({
-    name: 'favorite',
+const favorites = createSlice({
+    name: 'favorites',
     initialState,
     reducers: {
         setFavoritesPhoto(state, action: PayloadAction<PhotoType[]>) {
@@ -40,5 +40,5 @@ const favoriteSlice = createSlice({
     },
 })
 
-export const {setFavoritesPhoto, setInFavorites} = favoriteSlice.actions
-export default favoriteSlice.reducer
+export const {setFavoritesPhoto, setInFavorites} = favorites.actions
+export default favorites.reducer

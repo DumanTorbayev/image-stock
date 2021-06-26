@@ -1,3 +1,3 @@
 import {RootState} from "../rootReducer";
 
-export const getPhotoCollection = (state: RootState) => state.photoCollection
+export const getPhotoCollection = (state: RootState) => state.photos

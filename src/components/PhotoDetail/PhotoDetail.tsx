@@ -61,7 +61,7 @@ export const PhotoDetail: FC<PhotoType> = (
                     height={height}
                     src={regular}
                     alt={alt_description}
-                    shadow={true}
+                    detailPage={true}
                 />
             </div>
         </div>

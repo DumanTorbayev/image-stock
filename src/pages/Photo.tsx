@@ -14,13 +14,13 @@ import {getPhoto} from "../store/photoDetail/selectors";
 export const Photo: FC = () => {
     const {photo, loading} = useTypedSelector(getPhoto)
     const {photos} = useTypedSelector(getPhotoCollection)
-    const {handleFetchPhotoById, handleFetchRelatedPhotos} = useActions()
+    const {getFetchPhotoById, getRelatedPhotos} = useActions()
     const params = useParams<PhotoParamsType>()
     const {scrollToTop} = utils
 
     useEffect(() => {
-        handleFetchPhotoById(params)
-        handleFetchRelatedPhotos(params)
+        getFetchPhotoById(params)
+        getRelatedPhotos(params)
         scrollToTop()
     }, [params.id])
 

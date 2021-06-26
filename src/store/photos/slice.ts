@@ -1,20 +1,16 @@
 import {PhotoParamsType, PhotoType} from "../../types/photo";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {fetchPhotos, fetchRelatedPhoto} from "../../api/api";
-import {normalize, schema} from "normalizr"
+//import {normalize, schema} from "normalizr"
 
-const _ = require("lodash")
-
-const userEntity = new schema.Entity('users')
-
-interface fetchPhotosParamsType {
+interface getPhotosParamsType {
     page: number
     limit: number
 }
 
-export const handleFetchPhotos = createAsyncThunk(
-    'photos/fetchPhotos',
-    async ({page, limit}: fetchPhotosParamsType) => {
+export const getPhotos = createAsyncThunk(
+    'photos/getPhotos',
+    async ({page, limit}: getPhotosParamsType) => {
         try {
             const response = await fetchPhotos(page, limit)
 
@@ -27,19 +23,7 @@ export const handleFetchPhotos = createAsyncThunk(
     }
 )
 
-export const handleFetchRelatedPhotos = createAsyncThunk(
-    'photos/fetchRelatedPhotos',
-    async (params: PhotoParamsType) => {
-        try {
-            const response = await fetchRelatedPhoto(params)
-            return response.data.results
-        } catch (e) {
-            console.log(e)
-        }
-    }
-)
-
-export interface PhotoState {
+export interface PhotosStateType {
     photos: PhotoType[]
     loading: boolean
     error: null | string
@@ -47,7 +31,7 @@ export interface PhotoState {
     limit: number
 }
 
-const initialState: PhotoState = {
+const initialState: PhotosStateType = {
     photos: [],
     loading: false,
     error: null,
@@ -55,8 +39,8 @@ const initialState: PhotoState = {
     limit: 15
 }
 
-const photoSlice = createSlice({
-    name: 'photoCollection',
+const photos = createSlice({
+    name: 'photos',
     initialState,
     reducers: {
         setPhotoPage(state, action: PayloadAction<number>) {
@@ -64,17 +48,18 @@ const photoSlice = createSlice({
         },
         clearPhotos(state) {
             state.photos.splice(0, state.photos.length)
+        },
+        setIsLoading(state, action: PayloadAction<boolean>) {
+            state.loading = action.payload
         }
     },
     extraReducers: builder => {
-        builder.addCase(handleFetchPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
-            state.photos = _.uniqBy(state.photos.concat(action.payload), 'id')
-        })
-        builder.addCase(handleFetchRelatedPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
-            state.photos = action.payload
+        builder.addCase(getPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
+            state.photos = state.photos.concat(action.payload).filter((n, i, a) => n === a.find(m => m.id === n.id))
+            state.loading = false
         })
     }
 })
 
-export const {setPhotoPage, clearPhotos} = photoSlice.actions
-export default photoSlice.reducer
+export const {setPhotoPage, clearPhotos, setIsLoading} = photos.actions
+export default photos.reducer
