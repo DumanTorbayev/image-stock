@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import css from "./ResponsiveImage.module.scss"
 import {useWindowSize} from "../../../hooks/useWindowSize";
-import {BREAKPOINT576} from "../../../constants";
+import {BREAKPOINTS} from "../../../constants";
 
 interface ResponsiveImageType {
     src: string
@@ -18,7 +18,7 @@ export const ResponsiveImage: FC<ResponsiveImageType> = ({src, alt, width, heigh
     return (
         <div
             className={css['img-container']}
-            style={{maxWidth: `calc((100vh ${detailPage ? `${w > BREAKPOINT576 ? '- 280px' : ''}` : ''}) * ${width / height})`}}
+            style={{maxWidth: `calc((100vh ${detailPage ? `${w > BREAKPOINTS['576'] ? '- 280px' : ''}` : ''}) * ${width / height})`}}
         >
             < div style={{paddingBottom: `${(height / width * 100)}%`}}/>
             <img className={!detailPage ? css[`hidden`] : ''} data-id={dataId} src={src} alt={alt}/>

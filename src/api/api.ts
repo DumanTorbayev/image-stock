@@ -1,6 +1,5 @@
 import axios from "axios";
 import {PhotoParamsType} from "../types/photo";
-import {UserParamsType} from "../types/user";
 
 const api = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL}`,
@@ -24,6 +23,9 @@ export const fetchRelatedPhoto = (params: PhotoParamsType) => {
     return api.get(`/photos/${params.id}/related`)
 }
 
-export const fetchUser = (params: UserParamsType) => {
-    return api.get(`/users/${params.username}`)
+export const fetchSearchedPhoto = (page: number, limit: number, query: string) => {
+    return api.get('/search/photos/',
+        {
+            params: {query, page, per_page: limit}
+        })
 }

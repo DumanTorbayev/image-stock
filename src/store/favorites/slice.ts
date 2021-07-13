@@ -5,13 +5,13 @@ import {getStorage, setStorage} from "../../utils/storage/storage";
 
 interface FavoriteTypes {
     photos: PhotoType[]
-    checkedId: string | null
+    checkedPhotoId: string[]
     removedPhotoId: string | null
 }
 
 const initialState: FavoriteTypes = {
     photos: [],
-    checkedId: null,
+    checkedPhotoId: [],
     removedPhotoId: null
 }
 
@@ -22,23 +22,26 @@ const favorites = createSlice({
         setFavoritesPhoto(state, action: PayloadAction<PhotoType[]>) {
             state.photos = action.payload
         },
+        setFavoritesId(state, action: PayloadAction<string>) {
+            state.checkedPhotoId.push(action.payload)
+        },
         setInFavorites(state, action: PayloadAction<PhotoType>) {
             const localeStorageItem = getStorage(FAVORITES)
-            const arr = localeStorageItem ? localeStorageItem : []
+            const arrOfObj = localeStorageItem ? localeStorageItem : []
 
-            const index = arr.findIndex((item: PhotoType) => item.id === action.payload.id)
+            const index = arrOfObj.findIndex((item: PhotoType) => item.id === action.payload.id)
 
             if (index !== -1) {
-                arr.splice(index, 1)
+                arrOfObj.splice(index, 1)
                 state.removedPhotoId = state.removedPhotoId === action.payload.id ? null : action.payload.id
-                setStorage(FAVORITES, arr)
+                setStorage(FAVORITES, arrOfObj)
             } else {
-                arr.push(action.payload)
-                setStorage(FAVORITES, arr)
+                arrOfObj.push(action.payload)
+                setStorage(FAVORITES, arrOfObj)
             }
         }
     },
 })
 
-export const {setFavoritesPhoto, setInFavorites} = favorites.actions
+export const {setFavoritesPhoto, setInFavorites, setFavoritesId} = favorites.actions
 export default favorites.reducer

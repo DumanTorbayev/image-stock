@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
-import {Route, Switch} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import {Header} from "../Header/Header";
 import {Photo} from "../../pages/Photo";
 import {Home} from "../../pages/Home";
 import {Favorites} from "../../pages/Favorites";
-import {User} from "../../pages/User";
+import {Search} from "../../pages/Search";
 
 export const App: FC = () => {
     return (
@@ -19,8 +19,8 @@ export const App: FC = () => {
             <Route path="/favorites">
                 <Favorites/>
             </Route>
-            <Route path="/user/:username">
-                <User />
+            <Route path="/search">
+                <Search/>
             </Route>
         </>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import css from "./PhotoItem.module.scss";
 import {Link} from "react-router-dom";
 import {PhotoType} from "../../types/photo";
@@ -6,19 +6,22 @@ import {DownloadLink} from "../UI/DownloadLink/DownloadLink";
 import {Button} from "../UI/Button/Button";
 import {useActions} from "../../hooks/useActions";
 import {ResponsiveImage} from "../UI/ResponsiveImage/ResponsiveImage";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {getFavorite} from "../../store/favorites/selectors";
 
 export const PhotoItem = ({id, user, links, urls, alt_description, width, height}: PhotoType) => {
     const {setInFavorites} = useActions()
+    const {checkedPhotoId} = useTypedSelector(getFavorite)
 
-    const {name, profile_image, username} = user
-    const {small, regular} = urls
+    const {name, profile_image} = user
+    const {regular} = urls
     const {download} = links
 
     return (
         <div className={css['card']}>
             <div className={css['card__info']}>
                 <div className={css['card__overlay']}/>
-                <Link to={`/user/${username}`} className={css['owner']}>
+                <div className={css['owner']}>
                     <img
                         className={css['owner__img']}
                         src={profile_image.large}
@@ -27,11 +30,14 @@ export const PhotoItem = ({id, user, links, urls, alt_description, width, height
                     <div className={css['owner__name']}>
                         {name}
                     </div>
-                </Link>
+                </div>
                 <div className={css['actions']}>
                     <Button
-                        onClick={() => setInFavorites({id, user, links, urls, alt_description, width, height})}
+                        onClick={() => {
+                            setInFavorites({id, user, links, urls, alt_description, width, height})
+                        }}
                         photoCard
+                        className={checkedPhotoId.includes(id) ? 'checked' : ''}
                     >
                         <svg viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path

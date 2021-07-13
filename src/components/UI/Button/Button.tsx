@@ -17,10 +17,9 @@ export const Button: FC<ButtonType> =
             className,
             onClick,
             detailPage,
-            photoCard
+            photoCard,
         }
     ) => {
-
         const classNamesVar = classNames(css['in-favorite'], className ? css[className] : '', {
             [css['detail-page']]: detailPage,
             [css['photo-card']]: photoCard

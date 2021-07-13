@@ -4,6 +4,7 @@
     width: 100%;
     padding: 25px 0;
     background-color: #000;
+    color: #fff;
 
     &__top {
         display: flex;
@@ -12,13 +13,18 @@
     }
 }
 
-.logo {
+.logo,
+.search,
+.favorites {
     display: flex;
     align-items: center;
+}
+
+.logo {
     font-size: 24px;
     font-weight: 600;
     line-height: 29px;
-    color: #fff;
+    color: inherit;
     text-decoration: none;
 
     img {
@@ -26,16 +32,64 @@
     }
 }
 
-.favorites {
-    display: flex;
-    align-items: center;
+.search {
+    margin-left: auto;
     font-size: 18px;
     line-height: 21px;
-    color: #FFFFFF;
+    cursor: pointer;
+
+    img {
+        width: 30px;
+        margin-right: 8px;
+    }
+}
+
+.favorites {
+    margin-left: 40px;
+    font-size: 18px;
+    line-height: 21px;
+    color: inherit;
     text-decoration: none;
 
     img {
         width: 23px;
         margin-right: 10px;
+    }
+}
+
+.searchbar {
+    position: relative;
+    padding-top: 30px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        width: 50%;
+        height: 1px;
+        background: linear-gradient(to right, #000000 0%, #fff 50%, #000000 100%);
+    }
+
+    input {
+        display: block;
+        background-color: transparent;
+        border: 0;
+        width: 50%;
+        margin: 0 auto;
+        padding: 10px;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        &::placeholder {
+            color: #fff;
+        }
     }
 }

@@ -1,16 +1,16 @@
 import {clearPhotos, getPhotos, setIsLoading, setPhotoPage} from "./photos/slice";
 import {getFetchPhotoById, getRelatedPhotos,} from "./photoDetail/slice";
-import {setFavoritesPhoto, setInFavorites} from "./favorites/slice";
-import {getUser} from "./user/slice";
+import {setFavoritesId, setFavoritesPhoto, setInFavorites} from "./favorites/slice";
 
 export default {
     getPhotos,
     getRelatedPhotos,
     setPhotoPage,
+    //getSearchedPhotos,
     clearPhotos,
     getFetchPhotoById,
     setFavoritesPhoto,
     setInFavorites,
-    getUser,
     setIsLoading,
+    setFavoritesId,
 }

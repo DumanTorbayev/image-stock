@@ -4,7 +4,7 @@ import Masonry from "react-masonry-css";
 import {PhotoGridProps} from "../../types/photo";
 import {PhotoItem} from "../PhotoItem/PhotoItem";
 import {PhotoNotFound} from "../UI/PhotoNotFound/PhotoNotFound";
-import {BREAKPOINT1024, BREAKPOINT576} from "../../constants";
+import {BREAKPOINTS} from "../../constants";
 
 export const PhotoGrid: FC<PhotoGridProps> = ({photos, children}) => {
     return (
@@ -12,7 +12,7 @@ export const PhotoGrid: FC<PhotoGridProps> = ({photos, children}) => {
             {children}
             {photos
                 ? <Masonry
-                    breakpointCols={{default: 3, [BREAKPOINT1024]: 2, [BREAKPOINT576]: 1}}
+                    breakpointCols={{default: 3, [BREAKPOINTS["1024"]]: 2, [BREAKPOINTS["576"]]: 1}}
                     className={css['grid']}
                     columnClassName={css['column']}
                 >
