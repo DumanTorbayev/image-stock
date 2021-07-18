@@ -3,7 +3,7 @@
 ### [Demo Link](https://dumantorbayev.github.io/image-stock/)
 
 ## Stack
-* React (Create React App)
+* React ([Create React App](https://create-react-app.dev/))
 * Typescript
 * Redux
 * Redux Toolkit
