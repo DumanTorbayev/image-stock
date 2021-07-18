@@ -7,13 +7,10 @@ import {Preloader} from "../components/UI/Preloader/Preloader";
 import {PhotoGrid} from "../components/PhotoGrid/PhotoGrid";
 import {PhotoDetail} from "../components/PhotoDetail/PhotoDetail";
 import utils from "../utils";
-import {getPhotoCollection} from "../store/photos/selectors";
 import {getPhoto} from "../store/photoDetail/selectors";
 
-
 export const Photo: FC = () => {
-    const {photo, loading} = useTypedSelector(getPhoto)
-    const {photos} = useTypedSelector(getPhotoCollection)
+    const {photo, photos, loading} = useTypedSelector(getPhoto)
     const {getFetchPhotoById, getRelatedPhotos} = useActions()
     const params = useParams<PhotoParamsType>()
     const {scrollToTop} = utils
@@ -27,19 +24,22 @@ export const Photo: FC = () => {
     if (loading) {
         return (
             <Preloader/>
-        );
+        )
     }
 
     return (
         <>
-            {photo && <PhotoDetail {...photo}/>}
-
-            <div className="container">
-                <PhotoGrid photos={photos}>
-                    <h3>Похожие фотографии</h3>
-                </PhotoGrid>
-            </div>
+            {
+                photo &&
+                <>
+                    <PhotoDetail {...photo}/>
+                    <div className="container">
+                        <PhotoGrid photos={photos}>
+                            <h3>Похожие фотографии</h3>
+                        </PhotoGrid>
+                    </div>
+                </>
+            }
         </>
     )
-
-};
+}

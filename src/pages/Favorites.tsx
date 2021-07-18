@@ -23,5 +23,5 @@ export const Favorites = () => {
                 : <PhotoNotFound>Нет избранных фото</PhotoNotFound>
             }
         </div>
-    );
+    )
 }

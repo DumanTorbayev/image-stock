@@ -1,17 +1,17 @@
 import {PhotoType} from "../../types/photo";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {fetchPhotos} from "../../api/api";
+import {fetchPhotos, fetchSearchedPhoto} from "../../api/api";
 
 interface getPhotosParamsType {
     page: number
     limit: number
 }
 
-// interface searchPhotosParamsType {
-//     page: number
-//     limit: number
-//     value: string
-// }
+interface searchPhotosParamsType {
+    page: number
+    limit: number
+    value: string
+}
 
 export const getPhotos = createAsyncThunk(
     'photos/getPhotos',
@@ -25,17 +25,17 @@ export const getPhotos = createAsyncThunk(
     }
 )
 
-// export const getSearchedPhotos = createAsyncThunk(
-//     'photos/getSearchedPhotos',
-//     async ({page, limit, value}: searchPhotosParamsType) => {
-//         try {
-//             const response = await fetchSearchedPhoto(page, limit, value)
-//             return response.data
-//         } catch (e) {
-//             console.log(e)
-//         }
-//     }
-// )
+export const getSearchedPhotos = createAsyncThunk(
+    'photos/getSearchedPhotos',
+    async ({page, limit, value}: searchPhotosParamsType) => {
+        try {
+            const response = await fetchSearchedPhoto(page, limit, value)
+            return response.data.results
+        } catch (e) {
+            console.log(e)
+        }
+    }
+)
 
 export interface PhotosStateType {
     photos: PhotoType[]
@@ -72,10 +72,10 @@ const photos = createSlice({
             state.photos = state.photos.concat(action.payload).filter((n, i, a) => n === a.find(m => m.id === n.id))
             state.loading = false
         })
-        // builder.addCase(getSearchedPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
-        //     state.photos = state.photos.concat(action.payload).filter((n, i, a) => n === a.find(m => m.id === n.id))
-        //     state.loading = false
-        // })
+        builder.addCase(getSearchedPhotos.fulfilled, (state, action: PayloadAction<PhotoType[]>) => {
+            state.photos = state.photos.concat(action.payload).filter((n, i, a) => n === a.find(m => m.id === n.id))
+            state.loading = false
+        })
     }
 })
 

@@ -82,5 +82,5 @@ export const PhotoItem = ({id, user, links, urls, alt_description, width, height
                 detailPage={false}
             />
         </div>
-    );
-};
+    )
+}

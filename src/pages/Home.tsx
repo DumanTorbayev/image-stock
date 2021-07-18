@@ -27,7 +27,7 @@ export const Home: FC = () => {
     if (loading) {
         return (
             <Preloader/>
-        );
+        )
     }
 
     return (
@@ -44,5 +44,5 @@ export const Home: FC = () => {
             </div>
         </>
 
-    );
-};
+    )
+}
