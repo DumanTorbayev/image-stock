@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, useEffect, useState} from 'react'
+import React, {ChangeEvent, FC, useEffect, useRef, useState, MouseEvent} from 'react'
 import css from './Header.module.scss'
 import {Link, useLocation} from 'react-router-dom';
 import {useWindowSize} from "../../hooks/useWindowSize";
@@ -14,6 +14,7 @@ export const Header: FC = () => {
     const debouncedValue = useDebounce<string>(value, 1000)
     const history = useHistory()
     const location = useLocation<LocationType>()
+    const inputRef = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
         if(location.pathname !== '/search') {
@@ -30,6 +31,10 @@ export const Header: FC = () => {
         }
     }, [debouncedValue])
 
+    const handleShowSearchBar = (e: MouseEvent<HTMLDivElement>) => {
+        setShowSearchBar(!showSearchBar)
+    }
+
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }
@@ -43,7 +48,7 @@ export const Header: FC = () => {
                         {w > BREAKPOINTS["576"] ? 'ImageStock' : ''}
                     </Link>
 
-                    <div className={css.search} onClick={() => setShowSearchBar(!showSearchBar)}>
+                    <div className={css.search} onClick={handleShowSearchBar}>
                         <img src={`${process.env.PUBLIC_URL}/img/search-icon.svg`} alt=""/>
                         {w > BREAKPOINTS["576"] ? 'Search' : ''}
                     </div>
@@ -53,11 +58,10 @@ export const Header: FC = () => {
                         {w > BREAKPOINTS["576"] ? 'Favorites' : ''}
                     </Link>
                 </div>
-
                 {
                     showSearchBar &&
                     <div className={css.searchbar}>
-                        <input type="text" placeholder="Search" onChange={handleSearch}/>
+                        <input autoFocus={true} ref={inputRef} type="text" placeholder="Search" onChange={handleSearch}/>
                     </div>
                 }
             </div>
