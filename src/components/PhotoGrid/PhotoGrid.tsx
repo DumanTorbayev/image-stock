@@ -18,8 +18,7 @@ export const PhotoGrid: FC<PhotoGridProps> = ({photos, children}) => {
                 >
                     {photos.map((items, index) => <PhotoItem key={`${items.id}${index}`} {...items}/>)}
                 </Masonry>
-            : <PhotoNotFound>Фото не найдено</PhotoNotFound>}
-
+                : <PhotoNotFound>Фото не найдено</PhotoNotFound>}
         </div>
     );
 };
