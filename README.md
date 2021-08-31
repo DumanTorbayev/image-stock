@@ -2,6 +2,9 @@
 
 ### [Demo Link](https://dumantorbayev.github.io/image-stock/)
 
+## Screenshot
+![](https://i.imgur.com/kDbnecC.jpeg)
+
 ## Stack
 * React ([Create React App](https://create-react-app.dev/))
 * Typescript
